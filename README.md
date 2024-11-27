@@ -87,4 +87,4 @@ Dans les prochaines versions vous aurez la possibilité de consulter l'état d'u
 Extras
 -----
 
-Pour toutes suggestions ou problèmes rencontrées, contacter au contact@monetaht.online
+Pour toutes suggestions ou problèmes rencontrés, contacter au contact@monetaht.online
