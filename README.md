@@ -1,4 +1,4 @@
-# Moncash-Easy-SDK
+# Monetah-Checkout
 Une librairie PHP permettant d'utiliser les services Monetah dans un projet
 
 
