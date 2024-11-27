@@ -1,0 +1,18 @@
+{
+    "name": "monetah/monetah-checkout",
+    "description": "Library providing access to the Monetah checkout API",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Monetah\\checkout\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Schneider Chery"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}

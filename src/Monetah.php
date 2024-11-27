@@ -1,0 +1,94 @@
+<?php
+
+namespace Monetah\checkout;
+
+use Monetah\checkout\Constants;
+
+
+class Monetah {
+
+    private $credentials;
+
+    private $access_token;
+
+
+    public function __construct($client_id, $client_secret, $debug = true) {
+
+        $this->credentials = new Credentials($client_id, $client_secret);
+
+        try {
+			$this->access_token = $this->getAuthInfos()['access_token'];
+		}catch(\Exception $e) {
+			throw new \Exception($e->getMessage());
+		}
+
+    }
+
+
+    private function getAuthInfos() {
+
+        $url = Constants::OAUTH_TOKEN_URL; 
+
+        try {
+
+            $authHeader = base64_encode($this->credentials->getClient_id().':'.$this->credentials->getClient_secret());
+
+			$headers = array('Authorization' => 'Basic '.$authHeader);
+
+			$data = array('scope'=>"read,write", 'grant_type'=>"client_credentials");
+			
+
+			$res = RequestHandler::execute($url, 'POST', $headers, $data);
+
+
+			if($res['code'] >= 400) 
+				die($res);
+			
+
+	 		return json_decode($res['response'], true);
+
+
+	 	} catch(\Exception $e) {
+	 		throw new \Exception($e->getMessage());
+	 	}
+    }
+
+
+
+	public function checkout(float $amount, $currency, $ref = null) {
+
+		$url = Constants::ENDPOINT.Constants::PAYMENT_MAKER;
+
+		try {
+
+			$headers = [
+				'Authorization' => "Bearer ".$this->access_token
+			];
+
+			$data = [
+				'reference' => $ref??uniqid(),
+				'amount' => $amount,
+				'currency' => $currency
+			];
+
+			$res = RequestHandler::execute($url, 'POST', $headers, $data);
+
+
+			return new PaymentToken($this->credentials, json_decode($res['response'], true));
+
+		} catch(\Exception $e) {
+			throw new \Exception($e->getMessage());
+		}
+
+	}
+
+
+
+    public function __toString() {
+		return "Monetah object: Client_id (".$this->credentials->getClient_id().")";
+	}
+
+}
+
+
+?>
