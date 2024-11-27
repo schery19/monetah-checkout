@@ -61,9 +61,9 @@ Pour effectuer un paiement vous utilisez l'objet PaymentToken, qui vous donnera 
 <?php
 //Effectuer un paiement
 
-$orderId = 93;//Une identification unique pour le paiement
-$amount = 120;//Le montant du paiement
-$currency = 'usd'//Devise à facturer
+$orderId = 93; //Une identification unique pour le paiement
+$amount = 120; //Le montant du paiement
+$currency = "usd" //Devise à facturer
 
 $payToken = $monetah->checkout($amount, $currency, $orderId);
 
