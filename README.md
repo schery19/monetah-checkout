@@ -7,29 +7,11 @@ Installation
 
 ## Via Composer
 
-Dans la racine du dossier de votre projet, créez un nouveau fichier <b>composer.json</b> s'il n'existe pas encore, ajoutez le contenu suivant :
-
-```php
-{
-    "require": {
-        "monetah/monetah-checkout": "^1.0"
-    }
-}
-```
-
 Utilisez [composer](https://getcomposer.org/download/) pour installer Monetah et ses dépendances, après avoir modifié son chemin [global](https://askcodez.com/modifier-le-chemin-global-du-composeur-windows.html), exécutez la commande suivante sur votre terminal en vous positionnant dans le dossier de votre projet :
-
-```bash
-composer install
-```
-
-Vous pouvez aussi tapez directement la commande suivante :
 
 ```bash
 composer require monetah/monetah-checkout
 ```
-
-Si vous ignorez quelle version installer, dans ce cas la version la plus récente sera installée.
 
 Ensuite dans votre code, utilisez l'[autoload](https://getcomposer.org/doc/01-basic-usage.md#autoloading) de Composer : 
 
