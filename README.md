@@ -70,7 +70,7 @@ $payToken = $monetah->checkout($amount, $currency, $orderId);
 ?>
 
 <p>
-	<a href='<?= $payTok->payment_url; ?>'>
+	<a href='<?= $payToken->payment_url; ?>'>
 		<img src='https://monetaht.online/resources/assets/images/monetah_pay.png' width="120px" height="50px">
 	</a>
 </p>
