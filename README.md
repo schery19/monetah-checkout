@@ -79,12 +79,13 @@ $payToken = $monetah->checkout($amount, $currency, $orderId);
 
 <strong>Notes :</strong>
 
-Dans les prochaines versions vous aurez la possibilité de consulter l'état d'un paiment en utilisant le <i>payment_id</i> fournit par l'api checkout
 
-```
+Dans les prochaines versions vous aurez la possibilité de consulter l'état d'un paiment en utilisant le <i>payment_id</i> fournit par l'api checkout.
 
 
 Extras
 -----
 
 Pour toutes suggestions ou problèmes rencontrés, contacter au contact@monetaht.online
+
+<b>Attention :</b> A utiliser avec parcimonie
