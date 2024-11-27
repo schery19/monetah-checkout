@@ -1,1 +1,108 @@
-# monetah-checkout
+# Moncash-Easy-SDK
+Une librairie PHP permettant d'utiliser les services Monetah dans un projet
+
+
+Installation
+-----
+
+## Via Composer
+
+Dans la racine du dossier de votre projet, créez un nouveau fichier <b>composer.json</b> s'il n'existe pas encore, ajoutez le contenu suivant :
+
+```php
+{
+    "require": {
+        "monetah/monetah-checkout": "^1.0"
+    }
+}
+```
+
+Utilisez [composer](https://getcomposer.org/download/) pour installer Monetah et ses dépendances, après avoir modifié son chemin [global](https://askcodez.com/modifier-le-chemin-global-du-composeur-windows.html), exécutez la commande suivante sur votre terminal en vous positionnant dans le dossier de votre projet :
+
+```bash
+composer install
+```
+
+Vous pouvez aussi tapez directement la commande suivante :
+
+```bash
+composer require monetah/monetah-checkout
+```
+
+Si vous ignorez quelle version installer, dans ce cas la version la plus récente sera installée.
+
+Ensuite dans votre code, utilisez l'[autoload](https://getcomposer.org/doc/01-basic-usage.md#autoloading) de Composer : 
+
+```php
+require_once 'vendor/autoload.php';
+```
+
+
+## Installation manuelle
+
+Si vous ne souhaitez pas utiliser Composer, vous pouvez télécharger la [dernière version](https://github.com/schery19/monetah-checkout/releases), et ensuite incluez le fichier `init.php` dans votre code :
+
+```php
+require_once '/path/to/monetah-checkout/init.php';
+```
+
+
+
+Prérequis
+-----
+
+Pour utiliser Monetah il faut d'abord avoir un compte business sur le site de [Monetah](https://monetaht.online), ce compte vous servira pour tester votre intégration.
+
+Après avoir entré les informations nécessaires, vous obtiendrez votre Client id et Client secret qui seront très utiles pour l'utilisation de monetah-checkout.
+
+
+Utilisations
+-----
+
+Dans un fichier dans le repertoire source (src/) de votre projet :
+Instantiez l'objet MoncashAPI avec comme arguments : `$clientId` et `$clientSecret` qui sont à récupérer sur le site moncash après avoir créé votre compte business, un troisième argument `$debug` spécifie l'environnement, par défaut il est à `true`, passez le à `false` en mode production.
+
+```php
+
+use MoncashEasy\SDK\MoncashAPI;
+
+$clientId = "<votre client id>";
+$clientSecret = "<votre client secret>";
+
+$monetah = new Monetah($clientId, $clientSecret);
+
+```
+
+Pour effectuer un paiement vous utilisez l'objet PaymentToken, qui vous donnera par la suite un moyen d'obtenir le lien qui dirigera l'utilisateur sur le middleware de paiement Monetah pour finaliser le processus :
+
+```php
+<?php
+//Effectuer un paiement
+
+$orderId = 93;//Une identification unique pour le paiement
+$amount = 120;//Le montant du paiement
+$currency = 'usd'//Devise à facturer
+
+$payToken = $monetah->checkout($amount, $currency, $orderId);
+
+?>
+
+<p>
+	<a href='<?= $payTok->payment_url; ?>'>
+		<img src='https://monetaht.online/resources/assets/images/monetah_pay.png' width="120px" height="50px">
+	</a>
+</p>
+
+```
+
+<strong>Notes :</strong>
+
+Dans les prochaines versions vous aurez la possibilité de consulter l'état d'un paiment en utilisant le <i>payment_id</i> fournit par l'api checkout
+
+```
+
+
+Extras
+-----
+
+Pour toutes suggestions ou problèmes rencontrées, contacter au contact@monetaht.online
