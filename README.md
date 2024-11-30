@@ -77,10 +77,20 @@ $payToken = $monetah->checkout($amount, $currency, $orderId);
 
 ```
 
+Après finalisation du processus de paiement, vous pouvez récupérer les informations à partir de l'objet PaymentDetails
+
+```php
+$monetah = new Monetah($id, $secret);
+
+$payDetails = $monetah->retrievePayment(466987);
+
+var_dump($payDetails);
+
+```
+
+
 <strong>Notes :</strong>
-
-
-Dans les prochaines versions vous aurez la possibilité de consulter l'état d'un paiment en utilisant le <i>payment_id</i> fournit par l'api checkout.
+Vous pouvez aussi récupérer les détails du paiement avec la méthode `retrieveTransaction($transaction_id)` sur l'objet Monetah en utilisant le paramètre <b>transactionId</b> dans l'url de retour fournit par l'api monetah
 
 
 Extras
