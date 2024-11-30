@@ -10,4 +10,6 @@ require __DIR__.'/src/RequestHandler.php';
 
 require __DIR__.'/src/PaymentToken.php';
 
+require __DIR__.'/src/PaymentDetails.php';
+
 ?>

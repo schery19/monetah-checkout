@@ -15,6 +15,10 @@ class Constants {
 
 	const PAYMENT_MAKER = "/checkout";
 
+	const RETRIEVE_PAYMENT = "/payments";
+
+	const RETRIEVE_TRANSACTION = "/payments/transactions";
+
 	const REDIRECT_URL = "https://monetaht.online/middleware";
 
 	const GATEWAY_PAYMENT_URI = "https://monetaht.online/middleware/payment";

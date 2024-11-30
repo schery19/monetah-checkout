@@ -41,8 +41,9 @@ class Monetah {
 			$res = RequestHandler::execute($url, 'POST', $headers, $data);
 
 
+
 			if($res['code'] >= 400) 
-				die($res);
+				throw new \Exception(json_decode($res['response'], true)['message']);
 			
 
 	 		return json_decode($res['response'], true);
@@ -73,6 +74,11 @@ class Monetah {
 
 			$res = RequestHandler::execute($url, 'POST', $headers, $data);
 
+			var_dump($res);
+
+			if($res['code'] >= 400) 
+				throw new \Exception(json_decode($res['response'], true)['message']);
+
 
 			return new PaymentToken($this->credentials, json_decode($res['response'], true));
 
@@ -80,6 +86,56 @@ class Monetah {
 			throw new \Exception($e->getMessage());
 		}
 
+	}
+
+
+
+	public function retrievePayment($paymentId) {
+
+		$url = Constants::ENDPOINT.Constants::RETRIEVE_PAYMENT."/{$paymentId}";
+
+		try {
+
+			$headers = [
+				'Authorization' => "Bearer ".$this->access_token
+			];
+
+			$res = RequestHandler::execute($url, 'GET', $headers);
+
+			if($res['code'] >= 400) 
+				throw new \Exception(json_decode($res['response'], true)['message']);
+
+
+			return new PaymentDetails($this->credentials, json_decode($res['response'], true));
+
+		} catch(\Exception $e) {
+			throw new \Exception($e->getMessage());
+		}
+	}
+
+
+
+	public function retrieveTransaction($transactionId) {
+
+		$url = Constants::ENDPOINT.Constants::RETRIEVE_TRANSACTION."/{$transactionId}";
+
+		try {
+
+			$headers = [
+				'Authorization' => "Bearer ".$this->access_token
+			];
+
+			$res = RequestHandler::execute($url, 'GET', $headers);
+
+			if($res['code'] >= 400) 
+				throw new \Exception(json_decode($res['response'], true)['message']);
+			
+
+			return new PaymentDetails($this->credentials, json_decode($res['response'], true));
+
+		} catch(\Exception $e) {
+			throw new \Exception($e->getMessage());
+		}
 	}
 
 
