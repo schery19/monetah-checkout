@@ -73,8 +73,7 @@ class Monetah {
 			];
 
 			$res = RequestHandler::execute($url, 'POST', $headers, $data);
-
-			var_dump($res);
+			
 
 			if($res['code'] >= 400) 
 				throw new \Exception(json_decode($res['response'], true)['message']);
