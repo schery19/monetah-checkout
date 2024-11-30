@@ -36,7 +36,7 @@ class PaymentDetails {
         $this->message = $data['message'];
 
         if(isset($data['data'])) {
-            $data = $data['data']['transaction'];
+            $data = $data['data']['payment']??$data['data']['transaction'];
             
             $this->reference = $data['reference'];
             $this->transaction_id = $data['transaction_id'];
