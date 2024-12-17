@@ -98,6 +98,6 @@ Vous pouvez aussi récupérer les détails du paiement avec la méthode `retriev
 Extras
 -----
 
-Pour toutes suggestions ou problèmes rencontrés, contacter au contact@monetaht.online
+Pour toutes suggestions ou problèmes rencontrés, contacter au contact@monetaht.online / monetaht@gmail.com
 
 <b>Attention :</b> A utiliser avec parcimonie
