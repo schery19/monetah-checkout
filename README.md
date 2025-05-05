@@ -1,4 +1,4 @@
-<center><img src='https://monetaht.online/resources/assets/images/monetah_pay.png' width="150px" height="150px"></center>
+<center><img src='https://monetah.com/resources/assets/images/logo.png' width="150px" height="150px"></center>
 
 # Monetah-Checkout
 Une librairie PHP permettant d'utiliser les services Monetah dans un projet
