@@ -33,7 +33,7 @@ class Monetah {
 
             $authHeader = base64_encode($this->credentials->getClient_id().':'.$this->credentials->getClient_secret());
 
-			$headers = array('Authorization' => 'Basic '.$authHeader);
+			$headers = array('auth' => 'Basic '.$authHeader);
 
 			$data = array('scope'=>"read,write", 'grant_type'=>"client_credentials");
 			
@@ -63,7 +63,7 @@ class Monetah {
 		try {
 
 			$headers = [
-				'Authorization' => "Bearer ".$this->access_token
+				'auth' => "Bearer ".$this->access_token
 			];
 
 			$data = [
@@ -96,7 +96,7 @@ class Monetah {
 		try {
 
 			$headers = [
-				'Authorization' => "Bearer ".$this->access_token
+				'auth' => "Bearer ".$this->access_token
 			];
 
 			$res = RequestHandler::execute($url, 'GET', $headers);
@@ -121,7 +121,7 @@ class Monetah {
 		try {
 
 			$headers = [
-				'Authorization' => "Bearer ".$this->access_token
+				'auth' => "Bearer ".$this->access_token
 			];
 
 			$res = RequestHandler::execute($url, 'GET', $headers);
