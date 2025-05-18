@@ -79,7 +79,7 @@ $payToken = $monetah->checkout($amount, $currency, $orderId);
 
 ```
 
-<b>Attention</b> : Vous devez trouver un moyen de génerer une référence unique ($orderId), sinon laissez la géneration automatique<br/>
+<b>Attention</b> : Vous devez trouver un moyen de génerer une référence unique ($orderId), sinon laissez la géneration automatique. Les devises ne peuvent-etre que ('htg', 'usd', 'cad', 'eur')<br/>
 
 Vous pouvez toujours récupérer la référence, qu'elle soit automatique ou non, à travers l'objet PaymentToken ainsi :
 `$payToken->reference;`
