@@ -35,9 +35,8 @@ class PaymentToken {
         $this->timestamp = $data['timestamp'];
         $this->message = $data['message'];
 
-        $this->reference = $data['reference'];
-
         if(isset($data['data'])) {
+            $this->reference = $data['data']['reference'];
             $data = $data['data']['payment_token'];
             
             $this->payment_id = $data['payment_id'];
