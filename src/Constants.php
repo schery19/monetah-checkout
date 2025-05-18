@@ -19,6 +19,8 @@ class Constants {
 
 	public const RETRIEVE_TRANSACTION = "/payments/transactions";
 
+	public const RETRIEVE_ORDER = "/payments/orders";
+
 	public const REDIRECT_URL = "https://sandbox.monetah.com/middleware";
 
 	public const GATEWAY_PAYMENT_URI = "https://sandbox.monetah.com/middleware/public/index.php?route=payment";

@@ -43,7 +43,7 @@ class Monetah {
 
 
 			if($res['code'] >= 400) 
-				throw new \Exception(json_decode($res['response'], true)['message']);
+				throw new \Exception(json_decode($res['response'], true)['issues']);
 			
 
 	 		return json_decode($res['response'], true);
@@ -77,7 +77,7 @@ class Monetah {
 			
 
 			if($res['code'] >= 400) 
-				throw new \Exception(json_decode($res['response'], true)['message']);
+				throw new \Exception(json_decode($res['response'], true)['issues']);
 
 
 			return new PaymentToken($this->credentials, json_decode($res['response'], true));
@@ -103,7 +103,7 @@ class Monetah {
 			$res = RequestHandler::execute($url, 'GET', $headers);
 
 			if($res['code'] >= 400) 
-				throw new \Exception(json_decode($res['response'], true)['message']);
+				throw new \Exception(json_decode($res['response'], true)['issues']);
 
 
 			return new PaymentDetails($this->credentials, json_decode($res['response'], true));
@@ -128,7 +128,32 @@ class Monetah {
 			$res = RequestHandler::execute($url, 'GET', $headers);
 
 			if($res['code'] >= 400) 
-				throw new \Exception(json_decode($res['response'], true)['message']);
+				throw new \Exception(json_decode($res['response'], true)['issues']);
+			
+
+			return new PaymentDetails($this->credentials, json_decode($res['response'], true));
+
+		} catch(\Exception $e) {
+			throw new \Exception($e->getMessage());
+		}
+	}
+
+
+
+	public function retrieveOrder($orderId) {
+
+		$url = Constants::ENDPOINT.Constants::RETRIEVE_ORDER."/{$orderId}";
+
+		try {
+
+			$headers = [
+				'auth' => "Bearer ".$this->access_token
+			];
+
+			$res = RequestHandler::execute($url, 'GET', $headers);
+
+			if($res['code'] >= 400) 
+				throw new \Exception(json_decode($res['response'], true)['issues']);
 			
 
 			return new PaymentDetails($this->credentials, json_decode($res['response'], true));

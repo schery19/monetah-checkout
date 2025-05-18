@@ -1,4 +1,4 @@
-<center><img src='https://monetah.com/resources/assets/images/logo.png' width="150px" height="150px"></center>
+<center><img src='https://monetah.com/resources/assets/images/logo.png' width="100px" height="100px"></center>
 
 # Monetah-Checkout
 Une librairie PHP permettant d'utiliser les services Monetah dans un projet
@@ -35,7 +35,7 @@ require_once '/path/to/monetah-checkout/init.php';
 Prérequis
 -----
 
-Pour utiliser Monetah il faut d'abord avoir un compte business sur le site de [Monetah](https://monetaht.online), ce compte vous servira pour tester votre intégration.
+Pour utiliser Monetah il faut d'abord avoir un compte business sur le site de [Monetah](https://monetah.com), ce compte vous servira pour tester votre intégration.
 
 Après avoir entré les informations nécessaires, vous obtiendrez votre Client id et Client secret qui seront très utiles pour l'utilisation de monetah-checkout.
 
@@ -44,7 +44,7 @@ Utilisations
 -----
 
 Dans un fichier dans le repertoire source (src/) de votre projet :
-Instantiez l'objet Monetah avec comme arguments : `$clientId` et `$clientSecret` qui sont à récupérer sur le site [Monetah](https://monetaht.online) après avoir créé votre compte business, un troisième argument `$debug` spécifie l'environnement, par défaut il est à `true`, passez le à `false` en mode production.
+Instantiez l'objet Monetah avec comme arguments : `$clientId` et `$clientSecret` qui sont à récupérer sur le site [Monetah](https://monetah.com) après avoir créé votre compte business, un troisième argument `$debug` spécifie l'environnement, par défaut il est à `true`, passez le à `false` en mode production.
 
 ```php
 
@@ -65,7 +65,7 @@ Pour effectuer un paiement vous utilisez l'objet PaymentToken, qui vous donnera 
 
 $orderId = 93; //Une identification unique pour le paiement
 $amount = 120; //Le montant du paiement
-$currency = "usd" //Devise à facturer
+$currency = "usd"; //Devise à facturer
 
 $payToken = $monetah->checkout($amount, $currency, $orderId);
 
@@ -73,18 +73,25 @@ $payToken = $monetah->checkout($amount, $currency, $orderId);
 
 <p>
 	<a href='<?= $payToken->payment_url; ?>'>
-		<img src='https://monetaht.online/resources/assets/images/monetah_pay.png' width="120px" height="50px">
+		<img src='https://monetah.com/resources/assets/images/logo.png' width="120px" height="50px">
 	</a>
 </p>
 
 ```
 
-Après finalisation du processus de paiement, vous pouvez récupérer les informations à partir de l'objet PaymentDetails
+<b>Attention</b> : Vous devez trouver un moyen de génerer une référence unique ($orderId), sinon laissez la géneration automatique<br/>
+
+Vous pouvez toujours récupérer la référence, qu'elle soit automatique ou non, à travers l'objet PaymentToken ainsi :
+`$payToken->reference;`
+
+<br/>
+
+Après finalisation du processus de paiement, vous pouvez récupérer les informations à partir de l'objet PaymentDetails en utilisant la référence
 
 ```php
 $monetah = new Monetah($id, $secret);
 
-$payDetails = $monetah->retrievePayment(466987);
+$payDetails = $monetah->retrieveOrder($orderId);
 
 var_dump($payDetails);
 
@@ -92,12 +99,10 @@ var_dump($payDetails);
 
 
 <strong>Notes :</strong>
-Vous pouvez aussi récupérer les détails du paiement avec la méthode `retrieveTransaction($transaction_id)` sur l'objet Monetah en utilisant le paramètre <b>transactionId</b> dans l'url de retour fournit par l'api monetah
+Vous pouvez aussi récupérer les détails du paiement avec la méthode `retrieveTransaction($transaction_id)` sur l'objet Monetah en utilisant le paramètre <b>transaction_id</b> dans l'url de retour fournit par l'api monetah
 
 
 Extras
 -----
 
-Pour toutes suggestions ou problèmes rencontrés, contacter au contact@monetaht.online / monetaht@gmail.com
-
-<b>Attention :</b> A utiliser avec parcimonie
+Pour toutes suggestions ou problèmes rencontrés, contactez au admin@monetah.com

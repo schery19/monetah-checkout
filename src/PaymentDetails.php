@@ -21,6 +21,7 @@ class PaymentDetails {
     public $amount;
     public $currency;
     public $payer;
+    public $payment_status;
     public $description;
 
 
@@ -44,6 +45,7 @@ class PaymentDetails {
             $this->amount = $data['amount'];
             $this->currency = $data['currency'];
             $this->payer = $data['payer'];
+            $this->payment_status = $data['status'];
             $this->description = $data['description'];
         }
 
