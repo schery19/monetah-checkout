@@ -35,11 +35,12 @@ class PaymentToken {
         $this->timestamp = $data['timestamp'];
         $this->message = $data['message'];
 
+        $this->reference = $data['reference'];
+
         if(isset($data['data'])) {
             $data = $data['data']['payment_token'];
             
             $this->payment_id = $data['payment_id'];
-            $this->reference = $data['reference'];
             $this->expires_at = $data['expires_at'];
             $this->token = $data['token'];
             $this->qr_mode = $data['qr_mode'];
