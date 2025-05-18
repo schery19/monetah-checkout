@@ -56,7 +56,7 @@ class Monetah {
 
 
 
-	public function checkout(float $amount, $currency, $ref = null) {
+	public function checkout(float $amount, $currency, $ref = null, $qr_mode = false) {
 
 		$url = Constants::ENDPOINT.Constants::PAYMENT_MAKER;
 
@@ -69,7 +69,8 @@ class Monetah {
 			$data = [
 				'reference' => $ref??uniqid(),
 				'amount' => $amount,
-				'currency' => $currency
+				'currency' => $currency,
+				'qr_mode' => $qr_mode
 			];
 
 			$res = RequestHandler::execute($url, 'POST', $headers, $data);
