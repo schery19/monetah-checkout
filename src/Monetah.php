@@ -89,7 +89,7 @@ class Monetah {
 	}
 
 
-	public function transfert(float $amount, string $currency, string $description = null) {
+	public function transfert(float $amount, string $currency, string $receiver, string $description = null) {
 
 		$url = Constants::ENDPOINT.Constants::TRANSFERT_MAKER;
 
@@ -102,6 +102,7 @@ class Monetah {
 			$data = [
 				'amount' => $amount,
 				'currency' => $currency,
+				'receiver_email' => $receiver,
 				'description' => $description
 			];
 
