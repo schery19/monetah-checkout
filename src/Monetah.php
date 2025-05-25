@@ -89,6 +89,38 @@ class Monetah {
 	}
 
 
+	public function transfert(float $amount, string $currency, string $description = null) {
+
+		$url = Constants::ENDPOINT.Constants::TRANSFERT_MAKER;
+
+		try {
+
+			$headers = [
+				'auth' => "Bearer ".$this->access_token
+			];
+
+			$data = [
+				'amount' => $amount,
+				'currency' => $currency,
+				'description' => $description
+			];
+
+			$res = RequestHandler::execute($url, 'POST', $headers, $data);
+			
+
+			if($res['code'] >= 400) 
+				throw new \Exception(json_decode($res['response'], true)['issues']);
+
+
+			return new Transfert($this->credentials, json_decode($res['response'], true));
+
+		} catch(\Exception $e) {
+			throw new \Exception($e->getMessage());
+		}
+
+	}
+
+
 
 	public function retrievePayment($paymentId) {
 

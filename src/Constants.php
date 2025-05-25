@@ -15,6 +15,8 @@ class Constants {
 
 	public const PAYMENT_MAKER = "/checkout";
 
+	public const TRANSFERT_MAKER = "/payments/transfer";
+
 	public const RETRIEVE_PAYMENT = "/payments";
 
 	public const RETRIEVE_TRANSACTION = "/payments/transactions";
