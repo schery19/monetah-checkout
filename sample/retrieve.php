@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require 'vendor/autoload.php';
+require '../init.php';
 require 'credentials.php';
 
 use Monetah\checkout\Monetah;

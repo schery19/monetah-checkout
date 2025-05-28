@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require 'vendor/autoload.php';
+require '../init.php';
 require 'credentials.php';
 
 
@@ -12,7 +12,7 @@ $monetah = new Monetah(CLIENT_ID, CLIENT_SECRET);
 //Effectuer un paiement
 
 
-$amount = 120; //Le montant du paiement
+$amount = 10; //Le montant du paiement
 $currency = "htg"; //Devise à facturer
 
 $payToken = $monetah->checkout($amount, $currency);
