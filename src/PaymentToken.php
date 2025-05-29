@@ -46,7 +46,7 @@ class PaymentToken {
         }
 
 
-        $this->payment_url = Constants::GATEWAY_PAYMENT_URI.'/'.$this->token.'?qr='.$this->qr_mode;
+        $this->payment_url = $this->credentials->getConfigs()['GATEWAY_PAYMENT'].'/'.$this->token.'?qr='.$this->qr_mode;
 
     }
 

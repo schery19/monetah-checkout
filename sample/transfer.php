@@ -6,12 +6,12 @@ require 'credentials.php';
 
 use Monetah\checkout\Monetah;
 
-$monetah = new Monetah(CLIENT_ID, CLIENT_SECRET);
+$monetah = new Monetah(CLIENT_ID, CLIENT_SECRET, false);
 
 //Effectuer un transfert
-$amount = 280; //Le montant du transfert
-$currency = "usd"; //Devise à transferer
-$receiver = "RECEIVER_EMAIL"; //email du destinataire
+$amount = 10; //Le montant du transfert
+$currency = "htg"; //Devise à transferer
+$receiver = "schneiderchery42@gmail.com"; //email du destinataire
 
 $transfert = $monetah->transfert($amount, $currency, $receiver);
 

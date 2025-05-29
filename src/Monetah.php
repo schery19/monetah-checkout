@@ -2,6 +2,7 @@
 
 namespace Monetah\checkout;
 
+use Configuration;
 use Monetah\checkout\Constants;
 
 
@@ -14,7 +15,9 @@ class Monetah {
 
     public function __construct($client_id, $client_secret, $debug = true) {
 
-        $this->credentials = new Credentials($client_id, $client_secret);
+		$configs = $debug ? Configuration::getSandboxConfig() : Configuration::getProductionConfig();
+
+        $this->credentials = new Credentials($client_id, $client_secret, $configs);
 
         try {
 			$this->access_token = $this->getAuthInfos()['access_token'];
@@ -27,7 +30,7 @@ class Monetah {
 
     private function getAuthInfos() {
 
-        $url = Constants::OAUTH_TOKEN_URL; 
+        $url = $this->credentials->getConfigs()['OAUTH_TOKEN']; 
 
         try {
 
@@ -58,7 +61,7 @@ class Monetah {
 
 	public function checkout(float $amount, $currency, $ref = null, $qr_mode = false) {
 
-		$url = Constants::ENDPOINT.Constants::PAYMENT_MAKER;
+		$url = $this->credentials->getConfigs()['ENDPOINT'].Constants::PAYMENT_MAKER;
 
 		try {
 
@@ -74,7 +77,7 @@ class Monetah {
 			];
 
 			$res = RequestHandler::execute($url, 'POST', $headers, $data);
-			
+
 
 			if($res['code'] >= 400) 
 				throw new \Exception(json_decode($res['response'], true)['issues']);
@@ -91,7 +94,7 @@ class Monetah {
 
 	public function transfert(float $amount, string $currency, string $receiver, string $description = null) {
 
-		$url = Constants::ENDPOINT.Constants::TRANSFERT_MAKER;
+		$url = $this->credentials->getConfigs()['ENDPOINT'].Constants::TRANSFERT_MAKER;
 
 		try {
 
@@ -125,7 +128,7 @@ class Monetah {
 
 	public function retrievePayment($paymentId) {
 
-		$url = Constants::ENDPOINT.Constants::RETRIEVE_PAYMENT."/{$paymentId}";
+		$url = $this->credentials->getConfigs()['ENDPOINT'].Constants::RETRIEVE_PAYMENT."/{$paymentId}";
 
 		try {
 
@@ -150,7 +153,7 @@ class Monetah {
 
 	public function retrieveTransaction($transactionId) {
 
-		$url = Constants::ENDPOINT.Constants::RETRIEVE_TRANSACTION."/{$transactionId}";
+		$url = $this->credentials->getConfigs()['ENDPOINT'].Constants::RETRIEVE_TRANSACTION."/{$transactionId}";
 
 		try {
 
@@ -175,7 +178,7 @@ class Monetah {
 
 	public function retrieveOrder($orderId) {
 
-		$url = Constants::ENDPOINT.Constants::RETRIEVE_ORDER."/{$orderId}";
+		$url = $this->credentials->getConfigs()['ENDPOINT'].Constants::RETRIEVE_ORDER."/{$orderId}";
 
 		try {
 

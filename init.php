@@ -13,4 +13,6 @@ require __DIR__.'/src/PaymentToken.php';
 require __DIR__.'/src/PaymentDetails.php';
 
 require __DIR__.'/src/Transfert.php';
+
+require __DIR__.'/src/Configuration.php';
 ?>
